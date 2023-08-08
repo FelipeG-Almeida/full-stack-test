@@ -5,4 +5,4 @@ export const router = express.Router();
 
 const controller = new Controller();
 
-router.post('/api/files', controller);
+router.post('/api/files', controller.uploadCSV);
