@@ -7,12 +7,20 @@ import CardComponent from './components/CardComponent.jsx';
 function App() {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const [users, setUsers] = useState([]);
+	const [searchTerm, setSearchTerm] = useState('');
 
 	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const selected = event.target.files![0];
 		if (selected) {
 			setSelectedFile(selected);
 		}
+	};
+
+	const fetchUsers = async () => {
+		const fetchUsersResponse = await axios.get(
+			`http://localhost:3000/api/users?q=${searchTerm}`
+		);
+		setUsers(fetchUsersResponse.data);
 	};
 
 	const handleUpload = async () => {
@@ -28,10 +36,7 @@ function App() {
 				console.log(response);
 				setSelectedFile(null);
 
-				const fetchUsersResponse = await axios.get(
-					'http://localhost:3000/api/users'
-				);
-				setUsers(fetchUsersResponse.data);
+				fetchUsers();
 			}
 		} catch (error) {
 			console.log(error);
@@ -50,7 +55,9 @@ function App() {
 				Import Your <span>CSV</span> File
 			</h1>
 			<div>
-				<label htmlFor="file">Select File</label>
+				<label className="selectCSVButton" htmlFor="file">
+					Select File
+				</label>
 				<input
 					type="file"
 					name="file"
@@ -59,12 +66,31 @@ function App() {
 					onChange={handleFileChange}
 				/>
 			</div>
-			{users && (
-				<div className="cardsDiv">
-					{users.map((user, index) => {
-						return <CardComponent key={index} props={user} />;
-					})}
-				</div>
+			{users.length > 0 && (
+				<>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							fetchUsers();
+						}}
+						className="searchDiv"
+					>
+						<label htmlFor="q">Search Term:</label>
+						<input
+							type="text"
+							id="q"
+							name="q"
+							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
+						/>
+						<input type="submit" value="Search" />
+					</form>
+					<div className="cardsDiv">
+						{users.map((user, index) => {
+							return <CardComponent key={index} props={user} />;
+						})}
+					</div>
+				</>
 			)}
 		</main>
 	);
