@@ -3,8 +3,10 @@ import fileUpload from 'express-fileupload';
 import database from '../database/database';
 import { User } from '../models/User';
 import BadRequestError from '../BadRequestError';
+import Database from '../database/database';
 
 export class Controller {
+	constructor(private database: Database) {}
 	public uploadCSV = async (req: Request, res: Response) => {
 		try {
 			if (!req.files || !req.files.file) {
@@ -16,8 +18,6 @@ export class Controller {
 
 			const rows = csvData.split('\n');
 			const headers = rows[0].split(',');
-
-			const db = new database();
 
 			for (let i = 1; i < rows.length; i++) {
 				const values = rows[i].split(',');
@@ -36,7 +36,7 @@ export class Controller {
 					favorite_sport: dataObject.favorite_sport,
 				};
 
-				await db.insertDB(newUser);
+				await this.database.insertDB(newUser);
 			}
 
 			return res
@@ -58,8 +58,7 @@ export class Controller {
 			const searchTerm: string =
 				req.query.q?.toString().toLowerCase() || '';
 
-			const db = new database();
-			const users: User[] = await db.getUsers(searchTerm);
+			const users: User[] = await this.database.getUsers(searchTerm);
 
 			return res.status(200).json(users);
 		} catch (error) {

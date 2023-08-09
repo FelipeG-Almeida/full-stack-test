@@ -1,7 +1,7 @@
 import knex from 'knex';
 import { User } from '../models/User';
 
-export default class database {
+export default class Database {
 	public static USERS = 'users';
 
 	public static connection = knex({
@@ -17,12 +17,12 @@ export default class database {
 	});
 
 	public async insertDB(newUser: User): Promise<void> {
-		await database.connection(database.USERS).insert(newUser);
+		await Database.connection(Database.USERS).insert(newUser);
 	}
 
 	public async getUsers(searchTerm: string): Promise<User[]> {
-		const results = await database
-			.connection(database.USERS)
+		const results = await Database
+			.connection(Database.USERS)
 			.whereRaw('LOWER(name) LIKE ?', [`%${searchTerm}%`])
 			.orWhereRaw('LOWER(city) LIKE ?', [`%${searchTerm}%`])
 			.orWhereRaw('LOWER(country) LIKE ?', [`%${searchTerm}%`])
