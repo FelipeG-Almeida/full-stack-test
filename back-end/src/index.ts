@@ -5,7 +5,7 @@ import { router } from './router/router';
 import fileUpload from 'express-fileupload';
 
 dotenv.config();
-const app = express();
+export const app = express();
 
 app.use(cors());
 app.use(fileUpload());
