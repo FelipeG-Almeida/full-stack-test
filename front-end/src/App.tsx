@@ -2,9 +2,11 @@
 import { ChangeEvent, useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import CardComponent from './components/CardComponent.jsx';
 
 function App() {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+	const [users, setUsers] = useState([]);
 
 	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const selected = event.target.files![0];
@@ -25,6 +27,11 @@ function App() {
 				);
 				console.log(response);
 				setSelectedFile(null);
+
+				const fetchUsersResponse = await axios.get(
+					'http://localhost:3000/api/users'
+				);
+				setUsers(fetchUsersResponse.data);
 			}
 		} catch (error) {
 			console.log(error);
@@ -33,7 +40,6 @@ function App() {
 
 	useEffect(() => {
 		if (selectedFile) {
-			console.log(selectedFile);
 			handleUpload();
 		}
 	}, [selectedFile]);
@@ -53,6 +59,13 @@ function App() {
 					onChange={handleFileChange}
 				/>
 			</div>
+			{users && (
+				<div className="cardsDiv">
+					{users.map((user, index) => {
+						return <CardComponent key={index} props={user} />;
+					})}
+				</div>
+			)}
 		</main>
 	);
 }

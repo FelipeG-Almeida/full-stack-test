@@ -1,11 +1,13 @@
 main {
     align-items: center;
     background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(16, 88, 220, 0.13209033613445376) 50%, rgba(255, 255, 255, 1) 100%);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    row-gap: 32px;
+    height: max-content;
     justify-content: center;
+    padding: 10%;
+    row-gap: 32px;
 }
 
 h1 {
@@ -41,4 +43,12 @@ input[type="file"] {
 div {
     display: flex;
     flex-direction: column;
+}
+
+.cardsDiv {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    height: auto;
+    width: 100%;
 }
