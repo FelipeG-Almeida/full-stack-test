@@ -2,7 +2,7 @@
 	--green: #96dc84;
 }
 
-:root, html, body {
+html, body, #root{
 	font-family: 'Inter', sans-serif;
 	height: 100%;
 }

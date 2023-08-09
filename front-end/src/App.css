@@ -1,14 +1,11 @@
 main {
     align-items: center;
-    background: rgb(255, 255, 255);
     background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(16, 88, 220, 0.13209033613445376) 50%, rgba(255, 255, 255, 1) 100%);
     display: flex;
-    flex: 1;
     flex-direction: column;
-    row-gap: 32px;
     height: 100%;
+    row-gap: 32px;
     justify-content: center;
-    padding: 10%;
 }
 
 h1 {
@@ -20,7 +17,7 @@ span {
     color: var(--green);
 }
 
-button {
+label {
     background-color: var(--green);
     border: none;
     border-radius: 16px;
@@ -33,6 +30,15 @@ button {
     transition: 0.25s all;
 }
 
-button:hover {
+label:hover {
     box-shadow: rgba(150, 220, 132, 0.25) 0px 54px 55px, rgba(150, 220, 132, 0.12) 0px -12px 30px, rgba(150, 220, 132, 0.12) 0px 4px 6px, rgba(150, 220, 132, 0.17) 0px 12px 13px, rgba(150, 220, 132, 0.09) 0px -3px 5px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
 }
