@@ -81,13 +81,13 @@ To run this application, you need to have the following installed on your system
 
 Desktop:
 
-![localhost_4000_](https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/03c7c8c9-384e-4109-9634-77c9a6e73ee5)
+![desktop](https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/c9f2cf3f-cb8d-4af9-9ca7-edbce2beb598)
 
 Mobile:
 
 <p align="center">
   <kbd>
-    <img width="50%" src="https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/dd27282d-6b28-4bea-a638-a8f0b44e0153" />
+    <img width="50%" src="https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/132fa69e-aa45-4bf2-8ed0-6a8512cc51bc" />
   </kbd>
 </p>
 
@@ -101,12 +101,9 @@ Mobile:
 
 Here's the coverage from the project:
 
-![WhatsApp Image 2023-08-09 at 14 05 15](https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/7e6eefd3-3184-4051-b000-7390bdfa76ad)
+![coverage](https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/2c0c53f2-c8eb-4b0e-b8dc-5c467c98a486)
 
 ## Observations
 
 Given the project instructions, I assumed that the CSV file would have the same structure as the provided example. As a result, I created a "mocked" database structure to match the given structure. However, it is entirely possible to add a bit more complexity and allow for any CSV with any number of columns to be provided.
-
-![image](https://github.com/FelipeG-Almeida/full-stack-test/assets/73674044/538b0873-331a-405e-9ea8-3f2ae2bd600f)
-
 
